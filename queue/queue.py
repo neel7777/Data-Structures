@@ -103,11 +103,13 @@ class LinkedList:
 # linked_list.add_to_tail(2)
 # linked_list.add_to_tail(3)
 # print(linked_list)
+
 #array as data structure
 class Queue:
     def __init__(self):
         self.size = 0
         self.storage = []
+        
     def __len__(self):
         return len(self.storage)
 
