@@ -1,15 +1,17 @@
 """
-A stack is a data structure whose primary purpose is to store and
-return elements in Last In First Out order. 
+A queue is a data structure whose primary purpose is to store and
+return elements in First In First Out order. 
 
-1. Implement the Stack class using an array as the underlying storage structure.
-   Make sure the Stack tests pass.
-2. Re-implement the Stack class, this time using the linked list implementation
+1. Implement the Queue class using an array as the underlying storage structure.
+   Make sure the Queue tests pass.
+2. Re-implement the Queue class, this time using the linked list implementation
    as the underlying storage structure.
-   Make sure the Stack tests pass.
+   Make sure the Queue tests pass.
 3. What is the difference between using an array vs. a linked list when 
-   implementing a Stack?
-
+   implementing a Queue?
+   
+Stretch: What if you could only use instances of your Stack class to implement the Queue?
+         What would that look like? How many Stacks would you need? Try it!
 """
 class Node:
   def __init__(self, value=None, next_node=None):
@@ -94,55 +96,53 @@ class LinkedList:
   
 
 # example
-linked_list = LinkedList()
+# linked_list = LinkedList()
 
-linked_list.add_to_head(0)
-linked_list.add_to_tail(1)
-linked_list.add_to_tail(2)
-linked_list.add_to_tail(3)
-print(linked_list)
+# linked_list.add_to_head(0)
+# linked_list.add_to_tail(1)
+# linked_list.add_to_tail(2)
+# linked_list.add_to_tail(3)
+# print(linked_list)
+
 #array as data structure
-# class Stack:
-#     def __init__(self):
-#         self.size = 0
-#         self.storage = []
-
-#     def __len__(self):
-#         return len(self.storage)
-
-#     def push(self, value):
-#         self.size += 1
-#         self.storage.insert(0, value)
-        
-
-#     def pop(self):
-#         self.size -= 1
-#         if len(self.storage) == 0:
-#             return None
-        
-#         node = self.storage.pop(0)
-#         return node
-
-#linked list as data structure
-
-class Stack2:
+class Queue:
     def __init__(self):
         self.size = 0
-        self.storage = LinkedList()
-
-    def __len__(self):
-        return self.size
-
-    def push(self, value):
-        self.size += 1
-        self.storage.add_to_head(value)
+        self.storage = []
         
+    def __len__(self):
+        return len(self.storage)
 
-    def pop(self):
-        if self.size == 0:
+    def enqueue(self, value):
+        # add the new value, to the tail of our list
+        self.size += 1
+        self.storage.append(value)
+
+    def dequeue(self):
+        if len(self) == 0:
             return None
         # remove the value from the head of our list
         else:
-            self.size -= 1
-            value = self.storage.remove_head()
-            return value
+            return self.storage.pop(0)
+
+#linkedlist as data structure
+class Queue2:
+    def __init__(self):
+        self.size = 0
+        self.storage = LinkedList()
+    
+    def len(self):
+        return self.size
+
+    def enqueue(self, value):
+        # add the new value, to the tail of our list
+        self.size += 1
+        self.storage.add_to_tail(value)
+
+    def dequeue(self):
+        if self.size == 0:
+            return None
+        # remove the value from the head of our list
+        self.size -= 1
+        value = self.storage.remove_head()
+        return value
